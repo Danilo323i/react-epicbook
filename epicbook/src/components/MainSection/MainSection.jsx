@@ -6,7 +6,7 @@ import romance from "../../assets/romance.json";
 import scifi from "../../assets/scifi.json";
 import BookCard from "../BookCard/BookCard";
 
-const AllBook = [...fantasy,...horror,...history,...romance,...scifi]
+export const AllBook = [...fantasy,...horror,...history,...romance,...scifi]
 
 const MainSection = () => {
   return (
@@ -16,6 +16,7 @@ const MainSection = () => {
           .slice(0,20)
           .map((book) => (
             <BookCard
+              key={book.asin}
               title={book.title}
               img={book.img}
               category={book.category}
@@ -29,3 +30,4 @@ const MainSection = () => {
 };
 
 export default MainSection;
+

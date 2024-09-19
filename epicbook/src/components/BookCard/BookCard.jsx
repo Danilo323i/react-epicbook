@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card'
 
 const BookCard = ({ price, category, title, img }) => {
     return (
-        <Col sm={12} md={4} lg={3}>
-            <Card className="h-100">
+        <Col sm={12} md={4} lg={3} className='mt-5'>
+            <Card className="h-100 m-2">
                 <Card.Img
                     variant="top"
                     className="h-100 w-100 object-fit-cover"
