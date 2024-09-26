@@ -1,0 +1,8 @@
+.cardImg{
+    width: 600px;
+    height: 800px;
+}
+
+.cardImg img{
+    contain: content;
+}

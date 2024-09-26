@@ -17,8 +17,7 @@ const BookCard = ({ price, category, title, img }) => {
 
                     <Card.Text>{price} €</Card.Text>
                     <div className='d-flex d-flex justify-content-between'>
-                    <Button variant="primary">Acquista</Button>
-                    <Button variant="primary">Dettagli</Button>
+                    <Button variant="primary" className='m-auto'>Dettagli</Button>
                     </div>
 
                 </Card.Body>
