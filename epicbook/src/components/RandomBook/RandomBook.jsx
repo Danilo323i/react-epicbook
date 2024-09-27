@@ -20,6 +20,7 @@ const RandomBook = ({ warning }) => {
     // Impediamo che il click su `Chiudi` riapra subito il libro
     if (isOpen) {
       setIsOpen(false)
+      setRandomBook(null) //per resettare il libro selezionato
     }
   }
 
