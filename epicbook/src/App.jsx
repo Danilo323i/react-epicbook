@@ -3,6 +3,8 @@ import "./App.css";
 import MyNavbar from "./components/MyNavbar/MyNavbar";
 import MainSection from "./components/MainSection/MainSection";
 import RandomBook from "./components/RandomBook/RandomBook";
+import { ThemeProvider } from "./context/ThemeContext";
+import ThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
 
 const App = () => {
   const warning = () => {
@@ -11,9 +13,12 @@ const App = () => {
 
   return (
     <>
+    <ThemeProvider>
+      <ThemeSwitcher/>
       <MyNavbar />
       <RandomBook warning={warning} />
       <MainSection />
+    </ThemeProvider>
     </>
   );
 };
