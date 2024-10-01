@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Button, Col, FormControl, Row } from "react-bootstrap"
+import { AllBook } from "../components/MainSection/MainSection"
 
 
 
@@ -15,7 +16,7 @@ const filteredBooks = () => {
     if (inputValue === "") {
         setBooks(allBooks)
     } else {
-        const filtered = books.filter((book) => {
+        const filtered = allBooks.filter((book) => {
             return book.title.toLowerCase().includes(inputValue.toLocaleLowerCase())
         })
         setBooks(filtered)
@@ -31,8 +32,8 @@ return (
         <Col className="d-flex align-items-center gap-2">
         <FormControl type="text" placeholder="Search Book" onChange={onChangeSearchInput}/>
         <Button className="btn btn-primary" onClick={filteredBooks}>
-            {" "}
-            Search{" "}
+            {AllBook}
+            Search{""}
         </Button>
         
         </Col>

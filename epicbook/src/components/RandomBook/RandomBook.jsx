@@ -18,22 +18,15 @@ const RandomBook = ({ warning }) => {
 
   const handleClose = () => {
     // Impediamo che il click su `Chiudi` riapra subito il libro
-    if (isOpen) {
-      setIsOpen(false)
-      setRandomBook(null) //per resettare il libro selezionato
-    }
-  }
+
+    setIsOpen(false);
+  };
 
   return (
     <div className="randomCard">
       <div className="d-flex">
         <h4 className="m-auto">Vuoi conoscere il libro del giorno?</h4>
-        <Button
-          className="m-auto"
-          onClick={() => {
-            setIsOpen((IsOpen) => !IsOpen);
-          }}
-        >
+        <Button className="m-auto" onClick={togglePanel}>
           Libro del giorno
         </Button>
       </div>
