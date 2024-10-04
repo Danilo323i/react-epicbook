@@ -1,16 +1,28 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import SearchBook from '../SearchBook/SearchBook';
+import { useContext } from "react";
 
- const MyNavbar = () => {
+import { FormControl, Navbar } from "react-bootstrap";
+import { BookContext } from "../../context/BooksContext";
+
+const MyNavbar = () => {
+  const { searchBooks, searchTerm } = useContext(BookContext);
+
+  const handleSearchChange = (e) => {
+    searchBooks(e.target.value); // Aggiorna il filtro dei libri
+  };
+
   return (
-    <Navbar className="navbar navbar-expand-lg navbar-light bg-light">
-      <Container>
-        <Navbar.Brand href="#">Navbar</Navbar.Brand>
-      </Container>
-      {SearchBook}
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="#">EpicBook</Navbar.Brand>
+      <FormControl
+        type="text"
+        placeholder="Search for books"
+        value={searchTerm}
+        onChange={handleSearchChange} // Aggiorna il contesto quando l'utente scrive nella barra di ricerca
+        className="ml-auto"
+        style={{ width: "300px" }}
+      />
     </Navbar>
   );
-}
+};
 
 export default MyNavbar;

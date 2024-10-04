@@ -1,33 +1,23 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import MyNavbar from "./components/MyNavbar/MyNavbar";
-import MainSection, { AllBook } from "./components/MainSection/MainSection";
-import RandomBook from "./components/RandomBook/RandomBook";
+import MainSection from "./components/MainSection/MainSection";
 import { ThemeProvider } from "./context/ThemeContext";
 import ThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
-import { useState } from "react";
-import SearchBook from "./context/SearchBook";
+import { BookProvider } from "./context/BooksContext";
+import RandomBook from "./components/RandomBook/RandomBook";
+ // Importa BookProvider
 
 const App = () => {
-
-  const warning = () => {
-    alert("hello");
-  };
-  const [books, setBooks] = useState(AllBook);
-
   return (
-    <>
-      <ThemeProvider>
-
-        <MyNavbar>
-          <SearchBook books={books} setBooks={setBooks} allBooks={AllBook} />
-        </MyNavbar>
-        
+    <ThemeProvider>
+      <BookProvider>{/* Wrappa tutta l'app nel BookProvider */}
+        <MyNavbar />
         <ThemeSwitcher />
-        <RandomBook warning={warning} />
+        <RandomBook/>
         <MainSection />
-      </ThemeProvider>
-    </>
+        </BookProvider>
+    </ThemeProvider>
   );
 };
 

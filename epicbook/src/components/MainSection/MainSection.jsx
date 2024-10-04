@@ -1,29 +1,22 @@
 import { Container, Row } from "react-bootstrap";
-import fantasy from "../../assets/fantasy.json";
-import horror from "../../assets/horror.json";
-import history from "../../assets/history.json";
-import romance from "../../assets/romance.json";
-import scifi from "../../assets/scifi.json";
 import BookCard from "../BookCard/BookCard";
-
-export const AllBook = [...fantasy,...horror,...history,...romance,...scifi]
+import { useBooks } from "../../context/BooksContext"; // Usa il custom hook
 
 const MainSection = () => {
+  const { books } = useBooks(); // Usa il custom hook per accedere ai libri filtrati
+
   return (
     <Container>
       <Row>
-        {AllBook
-          .slice(0,20)
-          .map((book) => (
-            <BookCard
-              key={book.asin}
-              title={book.title}
-              img={book.img}
-              category={book.category}
-              price={book.price}
-            />
-          ))
-          }
+        {books.slice(0, 20).map((book) => (
+          <BookCard
+            key={book.asin}
+            title={book.title}
+            img={book.img}
+            category={book.category}
+            price={book.price}
+          />
+        ))}
       </Row>
     </Container>
   );

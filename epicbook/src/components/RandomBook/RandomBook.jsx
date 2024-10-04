@@ -1,25 +1,28 @@
 import { Button, Col, Collapse, Container, Row } from "react-bootstrap";
-import { AllBook } from "../MainSection/MainSection";
+import { useBooks } from "../../context/BooksContext"; // Usa il contesto per ottenere `books`
 import { useEffect, useState } from "react";
 import "./RandomBook.css";
 
 const RandomBook = ({ warning }) => {
+  const { books } = useBooks(); // Ottieni i libri dal contesto
   const [isOpen, setIsOpen] = useState(false);
   const [randomBook, setRandomBook] = useState(null);
 
+  const togglePanel = () => setIsOpen((prev) => !prev); // Funzione toggle per aprire/chiudere
+
   useEffect(() => {
-    // Verifica se il pannello è aperto e se ci sono libri disponibili
-    if (isOpen && AllBook.length > 0) {
-      // Crea un indice casuale per selezionare un libro
-      const randomIndex = Math.floor(Math.random() * AllBook.length);
-      setRandomBook(AllBook[randomIndex]);
+    if (isOpen && books.length > 0) {
+      // Crea un indice casuale per selezionare un libro solo se il pannello è aperto
+      const randomIndex = Math.floor(Math.random() * books.length);
+      setRandomBook(books[randomIndex]);
+    } else {
+      // Quando il pannello si chiude, resetta il libro casuale
+      setRandomBook(null);
     }
-  }, [isOpen]); // Effettua l'aggiornamento solo quando cambia `isOpen`
+  }, [isOpen, books]); // Effettua l'aggiornamento quando cambia `isOpen` o `books`
 
   const handleClose = () => {
-    // Impediamo che il click su `Chiudi` riapra subito il libro
-
-    setIsOpen(false);
+    setIsOpen(false); // Chiude il pannello senza riaprirlo subito dopo
   };
 
   return (
@@ -32,7 +35,7 @@ const RandomBook = ({ warning }) => {
       </div>
       <div>
         <Collapse in={isOpen}>
-          {randomBook ? ( // Verifica che randomBook sia definito prima di usarlo
+          {randomBook ? (
             <Container className="d-flex justify-content-center">
               <Row className="justify-content-center">
                 <Col className="text-center">
@@ -45,7 +48,6 @@ const RandomBook = ({ warning }) => {
                       className="w-150 h-100"
                     />
                   </div>
-
                   <p className="lead mb-3">{randomBook.title}</p>
                   <Button className="btn btn-info text-white" onClick={warning}>
                     Acquista a: {randomBook.price}$
