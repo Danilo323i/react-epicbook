@@ -1,28 +1,26 @@
 import { Button, Col, Collapse, Container, Row } from "react-bootstrap";
-import { useBooks } from "../../context/BooksContext"; // Usa il contesto per ottenere `books`
+import { useBooks } from "../../context/BooksContext";
 import { useEffect, useState } from "react";
 import "./RandomBook.css";
 
 const RandomBook = ({ warning }) => {
-  const { books } = useBooks(); // Ottieni i libri dal contesto
+  const { books } = useBooks();
   const [isOpen, setIsOpen] = useState(false);
   const [randomBook, setRandomBook] = useState(null);
 
-  const togglePanel = () => setIsOpen((prev) => !prev); // Funzione toggle per aprire/chiudere
+  const togglePanel = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
     if (isOpen && books.length > 0) {
-      // Crea un indice casuale per selezionare un libro solo se il pannello è aperto
       const randomIndex = Math.floor(Math.random() * books.length);
       setRandomBook(books[randomIndex]);
     } else {
-      // Quando il pannello si chiude, resetta il libro casuale
       setRandomBook(null);
     }
-  }, [isOpen, books]); // Effettua l'aggiornamento quando cambia `isOpen` o `books`
+  }, [isOpen, books]);
 
   const handleClose = () => {
-    setIsOpen(false); // Chiude il pannello senza riaprirlo subito dopo
+    setIsOpen(false);
   };
 
   return (
@@ -62,7 +60,7 @@ const RandomBook = ({ warning }) => {
               </Row>
             </Container>
           ) : (
-            <p>Caricamento...</p> // Mostra un messaggio di caricamento finché randomBook non è definito
+            <p>Caricamento...</p>
           )}
         </Collapse>
       </div>

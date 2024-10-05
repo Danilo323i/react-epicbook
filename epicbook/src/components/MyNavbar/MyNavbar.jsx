@@ -11,8 +11,8 @@ const MyNavbar = () => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#">EpicBook</Navbar.Brand>
+    <Navbar bg="light" expand="lg" className="px-3 d-flex justify-content-between">
+      <Navbar.Brand href="http://localhost:5173/">EpicBook</Navbar.Brand>
       <FormControl
         type="text"
         placeholder="Search for books"
