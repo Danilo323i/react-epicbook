@@ -37,7 +37,7 @@ const BookDetails = () => {
 
   // Funzione per aggiungere un nuovo commento
   const postComment = async () => {
-    const url = `https://striveschool-api.herokuapp.com/api/comments/${bookId}`;
+    const url = `https://striveschool-api.herokuapp.com/api/comments/`;
     const commentData = {
       comment: newComment,
       rate: rating,
